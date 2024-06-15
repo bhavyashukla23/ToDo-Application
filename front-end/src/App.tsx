@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './App.css';
 
 interface ToDO {
   _id: string;
@@ -42,26 +43,25 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <h1>Todo List</h1>
-      <input
-        type="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <button onClick={addTodo}>Add Todo</button>
+      <h1 className='title'>Todo List</h1>
+      <input type="text" value={text} onChange={(e) => setText(e.target.value)} className='text-area'/>
+      <br/>
+      <button onClick={addTodo} className='add-button'>Add Task</button>
+      <div className='todos'>
       <ul>
         {todos.map((todo) => (
-          <li key={todo._id}>
-            <span
+          <li key={todo._id} className='todo-list'>
+            <span className='todo-text'
               style={{ textDecoration: todo.completed ? 'line-through' : '' }}
-              onClick={() => toggleTodo(todo._id)}
+              onClick={() => toggleTodo(todo._id)} 
             >
               {todo.text}
             </span>
-            <button onClick={() => deleteTodo(todo._id)}>Delete</button>
+            <button onClick={() => deleteTodo(todo._id)} className='delete-button'>Delete</button>
           </li>
         ))}
       </ul>
+      </div>      
     </div>
   );
 };
